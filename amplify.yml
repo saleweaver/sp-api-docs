@@ -8,6 +8,7 @@ frontend:
         - pip3 install setuptools
         - git clone https://github.com/sphinx-contrib/googleanalytics
         - cd googleanalytics && python setup.py install
+
     build:
       commands:
         - sphinx-build -b dirhtml ./docs ./build

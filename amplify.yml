@@ -5,9 +5,8 @@ frontend:
       commands:
         - pip3 install -r requirements.txt
         - pip3 install sphinx
-        - git clone https://bitbucket.org/birkenfeld/sphinx-contrib/
-        - cd sphinx-contrib/googleanalytics
-        - python setup.py install
+        - git clone https://github.com/sphinx-contrib/googleanalytics
+        - cd googleanalytics && python setup.py install
     build:
       commands:
         - sphinx-build -b dirhtml ./docs ./build

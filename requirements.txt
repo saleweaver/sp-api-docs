@@ -1,0 +1,6 @@
+python-amazon-sp-api
+sphinx
+sphinx-rtd-theme
+sphinx-runner
+
+

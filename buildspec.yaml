@@ -1,12 +1,13 @@
 version: 1
 frontend:
   phases:
-    # IMPORTANT - Please verify your build commands
+    pre_build:
+      commands:
+        - pip3 install -r requirements.txt
     build:
-      commands: 
-        - pip install -r requirements.txt
+      commands:
         - python sphinx_runner.py -b dirhtml ./docs ./build
-        
+
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: ./build

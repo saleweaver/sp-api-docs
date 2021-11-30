@@ -73,5 +73,17 @@
         }
     }();
 </script>
+<script>
+    const el = document.getElementById('redoc-btn');
+    if (el) {
+        el.addEventListener('click', (e) => {
+            window.analytics.track('REDOC', {action: 'open', page: document.location.href, title: document.title});
+            const el = document.createElement('a');
+            el.target = '_blank';
+            el.href = e.target.getAttribute('data-href');
+            el.click();
+        });
+    }
+</script>
 
 {% endblock %}

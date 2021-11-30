@@ -44,3 +44,6 @@ Endpoints
     endpoints/listings_items
     endpoints/product_type_definitions
     endpoints/catalog_items
+    endpoints/inventories
+    endpoints/sales
+    endpoints/sellers

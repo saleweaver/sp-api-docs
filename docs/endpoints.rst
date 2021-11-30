@@ -15,6 +15,7 @@ Endpoints
     endpoints/product_fees
     endpoints/products
     endpoints/reports
+    endpoints/reports2
     endpoints/aplus_content
     endpoints/authorization
     endpoints/messaging

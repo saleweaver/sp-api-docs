@@ -52,7 +52,7 @@
             const dataHelpful = e.currentTarget.getAttribute('data-helpful');
             window.analytics.track('WAS_HELPFUL', {response: dataHelpful, ...defaultParams});
             const wasHelpful = dataHelpful === 'true';
-            fetch(`${baseUrl}${dataHelpful}`).then(e => {
+            fetch(`${baseUrl}${dataHelpful}?title=${defaultParams.title}`).then(e => {
                 if (wasHelpful) {
                     disable();
                     showThankYou();
@@ -64,7 +64,7 @@
                 document.getElementById('send-feedback-msg').addEventListener('click', () => {
                     const feedbackMessage = document.getElementById('helpful-feedback-textarea').value || 'no-text-filter';
                     window.analytics.track('WAS_HELPFUL', {response: dataHelpful, feedbackMessage, ...defaultParams})
-                    fetch(`${baseUrl}${dataHelpful}`, {
+                    fetch(`${baseUrl}${dataHelpful}?title=${defaultParams.title}`, {
                         method: 'POST', body: JSON.stringify({feedbackMessage})
                     }).then(e => {
                         disable();

@@ -1,0 +1,151 @@
+{
+  'resource': '/helpful/{washelpful}',
+  'path': '/helpful/true',
+  'httpMethod': 'GET',
+  'headers': {
+    'Accept': '*/*',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7',
+    'CloudFront-Forwarded-Proto': 'https',
+    'CloudFront-Is-Desktop-Viewer': 'true',
+    'CloudFront-Is-Mobile-Viewer': 'false',
+    'CloudFront-Is-SmartTV-Viewer': 'false',
+    'CloudFront-Is-Tablet-Viewer': 'false',
+    'CloudFront-Viewer-Country': 'NL',
+    'dnt': '1',
+    'Host': 'u7kb21h077.execute-api.eu-central-1.amazonaws.com',
+    'origin': 'http://localhost:63343',
+    'Referer': 'http://localhost:63343/',
+    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'cross-site',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36',
+    'Via': '2.0 3649c20f8adf8628b43dbef00864e392.cloudfront.net (CloudFront)',
+    'X-Amz-Cf-Id': 'NtENayXcKl1FfQSdxPdQmx3Ja0Oig59Dtl634Yy3cwPKnniwW-cjdg==',
+    'X-Amzn-Trace-Id': 'Root=1-61a6746e-2d4b96e65bcb5c535d6996aa',
+    'X-Forwarded-For': '136.143.43.219, 64.252.178.75',
+    'X-Forwarded-Port': '443',
+    'X-Forwarded-Proto': 'https'
+  },
+  'multiValueHeaders': {
+    'Accept': [
+      '*/*'
+    ],
+    'Accept-Encoding': [
+      'gzip, deflate, br'
+    ],
+    'Accept-Language': [
+      'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7'
+    ],
+    'CloudFront-Forwarded-Proto': [
+      'https'
+    ],
+    'CloudFront-Is-Desktop-Viewer': [
+      'true'
+    ],
+    'CloudFront-Is-Mobile-Viewer': [
+      'false'
+    ],
+    'CloudFront-Is-SmartTV-Viewer': [
+      'false'
+    ],
+    'CloudFront-Is-Tablet-Viewer': [
+      'false'
+    ],
+    'CloudFront-Viewer-Country': [
+      'NL'
+    ],
+    'dnt': [
+      '1'
+    ],
+    'Host': [
+      'u7kb21h077.execute-api.eu-central-1.amazonaws.com'
+    ],
+    'origin': [
+      'http://localhost:63343'
+    ],
+    'Referer': [
+      'http://localhost:63343/'
+    ],
+    'sec-ch-ua': [
+      '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"'
+    ],
+    'sec-ch-ua-mobile': [
+      '?0'
+    ],
+    'sec-ch-ua-platform': [
+      '"macOS"'
+    ],
+    'sec-fetch-dest': [
+      'empty'
+    ],
+    'sec-fetch-mode': [
+      'cors'
+    ],
+    'sec-fetch-site': [
+      'cross-site'
+    ],
+    'User-Agent': [
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36'
+    ],
+    'Via': [
+      '2.0 3649c20f8adf8628b43dbef00864e392.cloudfront.net (CloudFront)'
+    ],
+    'X-Amz-Cf-Id': [
+      'NtENayXcKl1FfQSdxPdQmx3Ja0Oig59Dtl634Yy3cwPKnniwW-cjdg=='
+    ],
+    'X-Amzn-Trace-Id': [
+      'Root=1-61a6746e-2d4b96e65bcb5c535d6996aa'
+    ],
+    'X-Forwarded-For': [
+      '136.143.43.219, 64.252.178.75'
+    ],
+    'X-Forwarded-Port': [
+      '443'
+    ],
+    'X-Forwarded-Proto': [
+      'https'
+    ]
+  },
+  'queryStringParameters': None,
+  'multiValueQueryStringParameters': None,
+  'pathParameters': {
+    'washelpful': 'true'
+  },
+  'stageVariables': None,
+  'requestContext': {
+    'resourceId': 'pi42vc',
+    'resourcePath': '/helpful/{washelpful}',
+    'httpMethod': 'GET',
+    'extendedRequestId': 'JochUEgfliAFeZw=',
+    'requestTime': '30/Nov/2021:18:58:54 +0000',
+    'path': '/staging/helpful/true',
+    'accountId': '315005433390',
+    'protocol': 'HTTP/1.1',
+    'stage': 'staging',
+    'domainPrefix': 'u7kb21h077',
+    'requestTimeEpoch': 1638298734643,
+    'requestId': 'a732268c-8ffe-42b6-b8e8-8f32845e2a92',
+    'identity': {
+      'cognitoIdentityPoolId': None,
+      'accountId': None,
+      'cognitoIdentityId': None,
+      'caller': None,
+      'sourceIp': '136.143.43.219',
+      'principalOrgId': None,
+      'accessKey': None,
+      'cognitoAuthenticationType': None,
+      'cognitoAuthenticationProvider': None,
+      'userArn': None,
+      'userAgent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36',
+      'user': None
+    },
+    'domainName': 'u7kb21h077.execute-api.eu-central-1.amazonaws.com',
+    'apiId': 'u7kb21h077'
+  },
+  'body': None,
+  'isBase64Encoded': False
+}

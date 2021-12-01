@@ -1,5 +1,6 @@
 {% extends "!layout.html" %}
 {% block menu %}
+ <div id="payment-request-button" style="margin-top: 5rem;"></div>
 {{ super() }}
 <div style="display: flex; height: 100%; flex-direction: column;">
     <div style="margin-top: 5em; width: 100%; height: 4rem; z-index: 999; display: flex; flex-direction: column; padding: 5px">
@@ -45,7 +46,7 @@
         <img src="https://img.shields.io/badge/github-view%20on%20github-silver?style=for-the-badge&logo=github">
         </span>
     </div>
-    <div id="payment-request-button" style="margin-top: 5rem;"></div>
+
 </div>
 <script>
     const link = (link) => {

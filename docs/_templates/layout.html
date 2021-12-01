@@ -183,12 +183,25 @@
             const result = await paymentRequest.canMakePayment();
             if (result) {
                 prButton.mount('#payment-request-button');
+                const a = document.getElementById('payment-request-button');
+                if (a) {
+                    a.addEventListener('click', () => window.analytics.track('PAYMENT', {
+                        action: 'started',
+                        title: document.title,
+                        page: document.location.href
+                    }))
+                }
             } else {
                 document.getElementById('payment-request-button').style.display = 'none';
             }
         })();
 
         paymentRequest.on('paymentmethod', async (ev) => {
+            window.analytics.track('PAYMENT', {
+                action: 'paymentmethod',
+                title: document.title,
+                page: document.location.href
+            })
             // Confirm the PaymentIntent without handling potential next actions (yet).
             const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(
                 clientSecret,
@@ -212,12 +225,29 @@
                     // Let Stripe.js handle the rest of the payment flow.
                     const {error} = await stripe.confirmCardPayment(clientSecret);
                     if (error) {
+                        window.analytics.track('PAYMENT', {
+                            action: 'failure',
+                            title: document.title,
+                            page: document.location.href,
+                            ...error,
+                        })
+
                         // The payment failed -- ask your customer for a new payment method.
                     } else {
-                        showThankYou();
+                        window.analytics.track('PAYMENT', {
+                            action: 'success',
+                            title: document.title,
+                            page: document.location.href
+                        })
+                        showThankYouPay();
                     }
                 } else {
-                    showThankYou();
+                    window.analytics.track('PAYMENT', {
+                        action: 'success',
+                        title: document.title,
+                        page: document.location.href
+                    })
+                    showThankYouPay();
                 }
             }
         });

@@ -149,74 +149,75 @@
 
     const url = 'https://u7kb21h077.execute-api.eu-central-1.amazonaws.com/staging/paymentintents';
     const stripe = Stripe('pk_live_5VpoyMNPPGbkELJSJQW0ocmr');
-    fetch(url).then(e => e.json()).then(intent => {
-        const clientSecret = intent.client_secret;
-        const paymentRequest = stripe.paymentRequest({
-            country: 'US',
-            currency: 'usd',
-            total: {
-                label: 'Donation | Thank you!',
-                amount: 300,
-            },
-            requestPayerName: true
-        });
-        const elements = stripe.elements();
-        const prButton = elements.create('paymentRequestButton', {
-            paymentRequest,
-            style: {
-                paymentRequestButton: {
-                    type: 'donate',
-                    // One of 'default', 'book', 'buy', or 'donate'
-                    // Defaults to 'default'
-                    theme: 'dark'
-                    // One of 'dark', 'light', or 'light-outline'
-                    // Defaults to 'dark'
-                },
-            },
-        });
 
-        (async () => {
-            // Check the availability of the Payment Request API first.
-            const result = await paymentRequest.canMakePayment();
-            if (result) {
-                window.analytics.track('PAYMENT', {
-                    action: 'visible',
-                    title: document.title,
-                    page: document.location.href
-                })
-                prButton.mount('#payment-request-button');
-                prButton.on('click', function (event) {
-                    window.analytics.track('PAYMENT', {
-                        action: 'clicked_button',
-                        title: document.title,
-                        page: document.location.href
-                    })
-                });
-                const a = document.getElementById('payment-request-button');
-                if (a) {
-                    a.addEventListener('click', () => window.analytics.track('PAYMENT', {
-                        action: 'clicked_button',
-                        title: document.title,
-                        page: document.location.href
-                    }))
-                }
-            } else {
-                document.getElementById('payment-request-button').style.display = 'none';
-                window.analytics.track('PAYMENT', {
-                    action: 'not_available',
-                    title: document.title,
-                    page: document.location.href
-                })
-            }
-        })();
+    const paymentRequest = stripe.paymentRequest({
+        country: 'US',
+        currency: 'usd',
+        total: {
+            label: 'Donation | Thank you!',
+            amount: 300,
+        },
+        requestPayerName: true
+    });
+    const elements = stripe.elements();
+    const prButton = elements.create('paymentRequestButton', {
+        paymentRequest,
+        style: {
+            paymentRequestButton: {
+                type: 'donate',
+                // One of 'default', 'book', 'buy', or 'donate'
+                // Defaults to 'default'
+                theme: 'dark'
+                // One of 'dark', 'light', or 'light-outline'
+                // Defaults to 'dark'
+            },
+        },
+    });
 
-        paymentRequest.on('paymentmethod', async (ev) => {
+    (async () => {
+        // Check the availability of the Payment Request API first.
+        const result = await paymentRequest.canMakePayment();
+        if (result) {
             window.analytics.track('PAYMENT', {
-                action: 'paymentmethod',
+                action: 'visible',
                 title: document.title,
                 page: document.location.href
             })
-            // Confirm the PaymentIntent without handling potential next actions (yet).
+            prButton.mount('#payment-request-button');
+            prButton.on('click', function (event) {
+                window.analytics.track('PAYMENT', {
+                    action: 'clicked_button',
+                    title: document.title,
+                    page: document.location.href
+                })
+            });
+            const a = document.getElementById('payment-request-button');
+            if (a) {
+                a.addEventListener('click', () => window.analytics.track('PAYMENT', {
+                    action: 'clicked_button',
+                    title: document.title,
+                    page: document.location.href
+                }))
+            }
+        } else {
+            document.getElementById('payment-request-button').style.display = 'none';
+            window.analytics.track('PAYMENT', {
+                action: 'not_available',
+                title: document.title,
+                page: document.location.href
+            })
+        }
+    })();
+
+    paymentRequest.on('paymentmethod', async (ev) => {
+        window.analytics.track('PAYMENT', {
+            action: 'paymentmethod',
+            title: document.title,
+            page: document.location.href
+        })
+        // Confirm the PaymentIntent without handling potential next actions (yet).
+        fetch(url).then(e => e.json()).then(async intent => {
+            const clientSecret = intent.client_secret;
             const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(
                 clientSecret,
                 {payment_method: ev.paymentMethod.id},
@@ -264,7 +265,6 @@
                 }
             }
         });
-
     });
 
 

@@ -193,13 +193,6 @@
                     page: document.location.href
                 })
             });
-            prButton.on('mouseover', () => {
-                window.analytics.track('PAYMENT', {
-                    action: 'hoovered_button',
-                    title: document.title,
-                    page: document.location.href
-                })
-            })
         } else {
             document.getElementById('payment-request-button').style.display = 'none';
             window.analytics.track('PAYMENT', {

@@ -148,11 +148,8 @@
     }
 
     const url = 'https://u7kb21h077.execute-api.eu-central-1.amazonaws.com/staging/paymentintents';
-    const stripe = Stripe('pk_live_5VpoyMNPPGbkELJSJQW0ocmr', {
-        apiVersion: "2020-08-27",
-    });
+    const stripe = Stripe('pk_live_5VpoyMNPPGbkELJSJQW0ocmr');
     fetch(url).then(e => e.json()).then(intent => {
-
         const clientSecret = intent.client_secret;
         const paymentRequest = stripe.paymentRequest({
             country: 'US',

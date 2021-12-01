@@ -17,7 +17,8 @@
                data-color-scheme="no-preference: dark_high_contrast; light: light; dark: dark_high_contrast;"
                data-icon="octicon-star" data-show-count="true"
                aria-label="Star saleweaver/python-amazon-sp-api on GitHub">Star</a>
-            <a style="margin-left: 5px" class="github-button" href="https://github.com/saleweaver/python-amazon-sp-api/fork"
+            <a style="margin-left: 5px" class="github-button"
+               href="https://github.com/saleweaver/python-amazon-sp-api/fork"
                data-color-scheme="no-preference: dark_high_contrast; light: light; dark: dark_high_contrast;"
                data-icon="octicon-repo-forked" data-show-count="true"
                aria-label="Fork saleweaver/python-amazon-sp-api on GitHub">Fork</a>
@@ -33,7 +34,8 @@
                data-icon="octicon-comment-discussion"
                aria-label="Discuss saleweaver/python-amazon-sp-api on GitHub">Discuss</a>
             <!-- Place this tag where you want the button to render. -->
-            <a style="margin-left: 5px" class="github-button" href="https://github.com/saleweaver/python-amazon-sp-api/issues"
+            <a style="margin-left: 5px" class="github-button"
+               href="https://github.com/saleweaver/python-amazon-sp-api/issues"
                data-color-scheme="no-preference: dark_high_contrast; light: light; dark: dark_high_contrast;"
                data-icon="octicon-issue-opened" data-show-count="true"
                aria-label="Issue saleweaver/python-amazon-sp-api on GitHub">Issue</a>
@@ -43,6 +45,7 @@
         <img src="https://img.shields.io/badge/github-view%20on%20github-silver?style=for-the-badge&logo=github">
         </span>
     </div>
+    <div id="payment-request-button" style="margin-top: 2.5rem;"></div>
 </div>
 <script>
     const link = (link) => {
@@ -72,7 +75,10 @@
 
 {% block footer %}
 {{ super() }}
-
+<div style="position: fixed; bottom: 2em; right: 2em; padding: 15px; background: #134113; border-radius: 10px; color: white; display: none;"
+     id="thank-you-pay">
+    Thank you for your donation!
+</div>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WXLCV6BS2G"></script>
 <script>
@@ -131,6 +137,94 @@
             el.click();
         });
     }
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+
+    const thankYouToastPay = document.getElementById('thank-you-pay');
+    const showThankYouPay = (hide = false) => {
+        thankYouToastPay.style.display = hide ? 'none' : 'block';
+        setTimeout(() => showThankYouPay(true), 3000);
+    }
+
+    const url = 'https://u7kb21h077.execute-api.eu-central-1.amazonaws.com/staging/paymentintents';
+    const stripe = Stripe('pk_test_VOOyyYjgzqdm8I3SrBqmh9qY', {
+        apiVersion: "2020-08-27",
+    });
+    fetch(url).then(intent => {
+        console.log(intent);
+        const clientSecret = intent.client_secret;
+        const paymentRequest = stripe.paymentRequest({
+            country: 'US',
+            currency: 'usd',
+            total: {
+                label: 'saleweaver | Thank you!',
+                amount: 300,
+            },
+            requestPayerName: true
+        });
+        const elements = stripe.elements();
+        const prButton = elements.create('paymentRequestButton', {
+            paymentRequest,
+            style: {
+                paymentRequestButton: {
+                    type: 'donate',
+                    // One of 'default', 'book', 'buy', or 'donate'
+                    // Defaults to 'default'
+                    theme: 'dark'
+                    // One of 'dark', 'light', or 'light-outline'
+                    // Defaults to 'dark'
+                },
+            },
+        });
+
+        (async () => {
+            // Check the availability of the Payment Request API first.
+            const result = await paymentRequest.canMakePayment();
+            if (result) {
+                prButton.mount('#payment-request-button');
+            } else {
+                document.getElementById('payment-request-button').style.display = 'none';
+            }
+        })();
+
+        paymentRequest.on('paymentmethod', async (ev) => {
+            // Confirm the PaymentIntent without handling potential next actions (yet).
+            const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(
+                clientSecret,
+                {payment_method: ev.paymentMethod.id},
+                {handleActions: false}
+            );
+
+            if (confirmError) {
+                // Report to the browser that the payment failed, prompting it to
+                // re-show the payment interface, or show an error message and close
+                // the payment interface.
+                ev.complete('fail');
+            } else {
+                // Report to the browser that the confirmation was successful, prompting
+                // it to close the browser payment method collection interface.
+                ev.complete('success');
+                // Check if the PaymentIntent requires any actions and if so let Stripe.js
+                // handle the flow. If using an API version older than "2019-02-11"
+                // instead check for: `paymentIntent.status === "requires_source_action"`.
+                if (paymentIntent.status === "requires_action") {
+                    // Let Stripe.js handle the rest of the payment flow.
+                    const {error} = await stripe.confirmCardPayment(clientSecret);
+                    if (error) {
+                        // The payment failed -- ask your customer for a new payment method.
+                    } else {
+                        showThankYou();
+                    }
+                } else {
+                    showThankYou();
+                }
+            }
+        });
+
+    });
+
+
 </script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

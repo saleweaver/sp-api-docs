@@ -155,6 +155,7 @@
     const thankYouToastPay = document.getElementById('thank-you-pay');
     const showThankYouPay = (hide = false) => {
         thankYouToastPay.style.display = hide ? 'none' : 'block';
+        link('https://sp-api-docs.saleweaver.com/thank-you-donation/');
         setTimeout(() => showThankYouPay(true), 3000);
     }
 

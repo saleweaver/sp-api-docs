@@ -6,7 +6,6 @@ frontend:
         - pip3 install -U pip
         - pip install -r requirements.txt
         - pip install sphinx
-        - pip install pipenv
     build:
       commands:
         - sphinx-build -b dirhtml ./docs ./build

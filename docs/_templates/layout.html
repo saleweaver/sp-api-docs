@@ -1,6 +1,6 @@
 {% extends "!layout.html" %}
 {% block menu %}
- <div id="payment-request-button" style=""></div>
+ <div id="payment-request-button" style="margin-top: -10px;"></div>
 {{ super() }}
 <div style="display: flex; height: 100%; flex-direction: column;">
 
@@ -193,14 +193,13 @@
                     page: document.location.href
                 })
             });
-            const a = document.getElementById('payment-request-button');
-            if (a) {
-                a.addEventListener('click', () => window.analytics.track('PAYMENT', {
-                    action: 'clicked_button',
+            prButton.on('mouseover', () => {
+                window.analytics.track('PAYMENT', {
+                    action: 'hovered_button',
                     title: document.title,
                     page: document.location.href
-                }))
-            }
+                })
+            })
         } else {
             document.getElementById('payment-request-button').style.display = 'none';
             window.analytics.track('PAYMENT', {

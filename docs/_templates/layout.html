@@ -45,7 +45,7 @@
         <img src="https://img.shields.io/badge/github-view%20on%20github-silver?style=for-the-badge&logo=github">
         </span>
     </div>
-    <div id="payment-request-button" style="margin-top: 2.5rem;"></div>
+    <div id="payment-request-button" style="margin-top: 5rem;"></div>
 </div>
 <script>
     const link = (link) => {
@@ -148,7 +148,7 @@
     }
 
     const url = 'https://u7kb21h077.execute-api.eu-central-1.amazonaws.com/staging/paymentintents';
-    const stripe = Stripe('pk_test_VOOyyYjgzqdm8I3SrBqmh9qY', {
+    const stripe = Stripe('pk_live_5VpoyMNPPGbkELJSJQW0ocmr', {
         apiVersion: "2020-08-27",
     });
     fetch(url).then(intent => {

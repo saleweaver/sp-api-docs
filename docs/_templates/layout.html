@@ -182,6 +182,11 @@
             // Check the availability of the Payment Request API first.
             const result = await paymentRequest.canMakePayment();
             if (result) {
+                window.analytics.track('PAYMENT', {
+                        action: 'visible',
+                        title: document.title,
+                        page: document.location.href
+                    })
                 prButton.mount('#payment-request-button');
                 const a = document.getElementById('payment-request-button');
                 if (a) {
@@ -193,6 +198,11 @@
                 }
             } else {
                 document.getElementById('payment-request-button').style.display = 'none';
+                window.analytics.track('PAYMENT', {
+                        action: 'not_available',
+                        title: document.title,
+                        page: document.location.href
+                    })
             }
         })();
 

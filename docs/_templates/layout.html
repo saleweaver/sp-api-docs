@@ -152,7 +152,6 @@
         apiVersion: "2020-08-27",
     });
     fetch(url).then(intent => {
-        console.log(intent);
         const clientSecret = intent.client_secret;
         const paymentRequest = stripe.paymentRequest({
             country: 'US',
@@ -208,11 +207,12 @@
                 {payment_method: ev.paymentMethod.id},
                 {handleActions: false}
             );
-
+            console.log(paymentIntent);
             if (confirmError) {
                 // Report to the browser that the payment failed, prompting it to
                 // re-show the payment interface, or show an error message and close
                 // the payment interface.
+                console.log(confirmError, ev);
                 ev.complete('fail');
             } else {
                 // Report to the browser that the confirmation was successful, prompting

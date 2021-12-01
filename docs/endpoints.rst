@@ -19,14 +19,11 @@ Endpoints
     endpoints/fulfillment_outbound
     endpoints/inventories
     endpoints/listings_items
-    endpoints/listings_items
     endpoints/merchant_fulfillment
     endpoints/messaging
     endpoints/notifications
-    endpoints/notifications
     endpoints/orders
     endpoints/product_fees
-    endpoints/product_type_definitions
     endpoints/product_type_definitions
     endpoints/products
     endpoints/reports

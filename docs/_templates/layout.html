@@ -180,15 +180,22 @@
             const result = await paymentRequest.canMakePayment();
             if (result) {
                 window.analytics.track('PAYMENT', {
-                        action: 'visible',
+                    action: 'visible',
+                    title: document.title,
+                    page: document.location.href
+                })
+                prButton.mount('#payment-request-button');
+                prButton.on('click', function (event) {
+                    window.analytics.track('PAYMENT', {
+                        action: 'clicked_button',
                         title: document.title,
                         page: document.location.href
                     })
-                prButton.mount('#payment-request-button');
+                });
                 const a = document.getElementById('payment-request-button');
                 if (a) {
                     a.addEventListener('click', () => window.analytics.track('PAYMENT', {
-                        action: 'started',
+                        action: 'clicked_button',
                         title: document.title,
                         page: document.location.href
                     }))
@@ -196,10 +203,10 @@
             } else {
                 document.getElementById('payment-request-button').style.display = 'none';
                 window.analytics.track('PAYMENT', {
-                        action: 'not_available',
-                        title: document.title,
-                        page: document.location.href
-                    })
+                    action: 'not_available',
+                    title: document.title,
+                    page: document.location.href
+                })
             }
         })();
 
@@ -215,12 +222,10 @@
                 {payment_method: ev.paymentMethod.id},
                 {handleActions: false}
             );
-            console.log(paymentIntent);
             if (confirmError) {
                 // Report to the browser that the payment failed, prompting it to
                 // re-show the payment interface, or show an error message and close
                 // the payment interface.
-                console.log(confirmError, ev);
                 ev.complete('fail');
             } else {
                 // Report to the browser that the confirmation was successful, prompting

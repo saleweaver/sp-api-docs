@@ -192,16 +192,16 @@
         const submitDonateBtn = document.getElementById('submit-donate');
         submitDonateBtn.addEventListener('click', async (ev) => {
             window.analytics.track('PAYMENT', {
-                        action: 'start_payment',
-                        title: document.title,
-                        page: document.location.href
-                    });
+                action: 'start_payment',
+                title: document.title,
+                page: document.location.href
+            });
 
             window.analytics.track('PAYMENT', {
-                        action: 'paymentmethod',
-                        title: document.title,
-                        page: document.location.href
-                    });
+                action: 'paymentmethod',
+                title: document.title,
+                page: document.location.href
+            });
             submitDonateBtn.setAttribute('disabled', 'true');
             submitDonateBtn.style.pointerEvents = 'none';
             ev.preventDefault();
@@ -220,6 +220,8 @@
                 console.log(result.error.message);
                 displayError.style.display = 'block';
                 displayError.textContent = result.error.message;
+                submitDonateBtn.setAttribute('disabled', 'false');
+                submitDonateBtn.style.pointerEvents = 'all';
             } else {
                 displayError.style.display = 'none';
 
@@ -231,16 +233,18 @@
                         page: document.location.href
                     });
                     displayError.style.display = 'block';
-                        displayError.style.color= 'green';
-                        displayError.textContent = 'Thank you for your donation!';
-                           donateBtn.style.display = 'flex';
-                        paymentFormContainer.style.display = 'none';
+                    displayError.style.color = 'green';
+                    displayError.textContent = 'Thank you for your donation!';
+                    donateBtn.style.display = 'flex';
+                    paymentFormContainer.style.display = 'none';
                     showThankYouPay();
                 }
                 if (result.paymentIntent.status === "requires_action") {
                     // Let Stripe.js handle the rest of the payment flow.
                     let {error} = await stripe.confirmCardPayment(clientSecret);
                     if (error) {
+                        submitDonateBtn.setAttribute('disabled', 'false');
+                        submitDonateBtn.style.pointerEvents = 'all';
                         window.analytics.track('PAYMENT', {
                             action: 'failure',
                             title: document.title,
@@ -258,7 +262,7 @@
                             page: document.location.href
                         });
                         displayError.style.display = 'block';
-                        displayError.style.color= 'green';
+                        displayError.style.color = 'green';
                         displayError.textContent = 'Thank you for your donation!';
                         showThankYouPay();
                         donateBtn.style.display = 'flex';

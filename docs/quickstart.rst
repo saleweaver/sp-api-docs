@@ -93,6 +93,18 @@ Below code will print all orders for your credentials, for the last 7 days:
             print(order)
 
 
+.. warning::
+
+    Amazon's endpoints don't follow naming conventions within the API. The parameter `NextToken` sometimes is called `next_token`, or differently.
+    @load_all_pages accepts `next_token_param` as a parameter:
+
+    .. code-block:: python
+
+        @load_all_pages(next_token_param='next_token')
+
+    Now it will look for a key named `next_token` in payload, instead of `NextToken`
+
+
 Creating a report is just as easy:
 
 .. note::

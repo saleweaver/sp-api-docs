@@ -1,7 +1,9 @@
 Personally identifiable information (PII)
 =========================================
 
-If your application has access to PII-Data, you can request a token with the `Token` client, then use the returned token to access protected resources.
+If your application has access to PII-Data, you can request a token with the `Token`_ client, then use the returned token to access protected resources.
+
+.. _Token: https://sp-api-docs.saleweaver.com/endpoints/tokens/
 
 .. code-block:: python
 

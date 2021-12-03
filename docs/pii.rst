@@ -1,0 +1,17 @@
+Personally identifiable information (PII)
+=========================================
+
+If your application has access to PII-Data, you can request a token with the `Token` client, then use the returned token to access protected resources.
+
+.. code-block:: python
+
+    token_res = Tokens().create_restricted_data_token(restrictedResources=[{
+         "method": "GET",
+         "path": "/orders/v0/orders",
+         "dataElements": ["buyerInfo", "shippingAddress"]
+        }
+    ])
+    orders = Orders(restricted_data_token=token_res.payload['restrictedDataToken']).get_orders(LastUpdatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
+
+    # orders have buyerInfo and shippingAddress
+    print(orders)

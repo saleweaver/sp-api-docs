@@ -13,6 +13,7 @@ Welcome to PYTHON-AMAZON-SP-API's documentation!
    credentials
    quickstart
    endpoints
+   pii
    responses
    exceptions
    utils

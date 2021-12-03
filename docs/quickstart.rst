@@ -121,7 +121,7 @@ Creating a report is just as easy:
         reportType=ReportType.GET_FLAT_FILE_ALL_ORDERS_DATA_BY_LAST_UPDATE_GENERAL,
         # optionally, you can set a start and end time for your report
         dataStartTime=(datetime.utcnow() - timedelta(days=7)).isoformat()
-        dataStartTime=(datetime.utcnow() - timedelta(days=1)).isoformat()
+        dataEndTime=(datetime.utcnow() - timedelta(days=1)).isoformat()
         )
     print(res)
     print(res.payload) # object containing a report id

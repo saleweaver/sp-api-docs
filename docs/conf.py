@@ -30,7 +30,7 @@ author = 'Michael Primke'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx_rtd_theme", 'button',
+    "sphinx_rtd_theme", 'button', 'cookieconsent',
     'sphinx.ext.autodoc', 'sphinx.ext.coverage', 'sphinx.ext.napoleon',
 
 ]

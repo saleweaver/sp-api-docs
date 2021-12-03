@@ -29,7 +29,7 @@ class ButtonDirective(Directive):
         env = self.state.document.settings.env
         app = env.app
 
-        app.add_stylesheet('button.css')
+
 
         node = button_node()
         node['text'] = self.options['text']
@@ -47,4 +47,5 @@ def html_visit_button_node(self, node):
 def setup(app):
     app.add_node(button_node,
                  html=(html_visit_button_node, None))
+    app.add_css_file('button.css')
     app.add_directive('button', ButtonDirective)

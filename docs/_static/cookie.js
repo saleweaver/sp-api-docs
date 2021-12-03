@@ -49,12 +49,8 @@ window.CookieConsent.init({
           locale: {
             en: {
               name: 'Strictly Necessary Cookies',
-              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu commodo est, nec gravida odio. Suspendisse scelerisque a ex nec semper.',
+              description: 'Cookies to help optimize documentation.',
             },
-            hu: {
-              name: 'Szükséges sütik',
-              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu commodo est, nec gravida odio. Suspendisse scelerisque a ex nec semper.',
-            }
           }
         }
       }

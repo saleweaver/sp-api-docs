@@ -11,7 +11,7 @@ Welcome to PYTHON-AMAZON-SP-API's documentation!
 
    installation
    credentials
-   client_usage
+   quickstart
    endpoints
    responses
    exceptions

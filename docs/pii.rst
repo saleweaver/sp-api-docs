@@ -36,3 +36,4 @@ Starting with v0.9.0, you can also pass the `RestrictedResources` to the `Orders
             'order-id',
             RestrictedResources=['buyerInfo']
         )
+

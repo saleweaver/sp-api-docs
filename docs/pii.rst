@@ -18,3 +18,21 @@ If your application has access to PII-Data, you can request a token with the `To
     # orders have buyerInfo and shippingAddress
     print(orders)
 
+Starting with v0.9.0, you can also pass the `restrictedResources` to the `Orders` calls directly:
+
+.. code-block:: python
+
+        orders = Orders().get_orders(
+            RestrictedResources=['buyerInfo', 'shippingAddress'],
+            LastUpdatedAfter=(datetime.utcnow() - timedelta(days=1)).isoformat()
+        )
+
+        order = Orders().get_order(
+            'order-id',
+            RestrictedResources=['buyerInfo', 'shippingAddress']
+        )
+
+        order_items = Orders().get_order_items(
+            'order-id',
+            RestrictedResources=['buyerInfo']
+        )

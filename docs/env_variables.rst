@@ -47,13 +47,11 @@ You can use every account's name
 
     Orders(account='ANOTHER_ACCOUNT').get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
 
-**************************
-Note
-**************************
+.. note::
 
-The refresh token can be passed directly to the client, too. You don't need to pass the whole credentials if all that changes is the refresh token.
+    The refresh token can be passed directly to the client, too. You don't need to pass the whole credentials if all that changes is the refresh token.
 
-..  code-block:: python
+    ..  code-block:: python
 
-    Orders(account='ANOTHER_ACCOUNT', refresh_token='<refresh_token_for_this_request>').get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
+        Orders(account='ANOTHER_ACCOUNT', refresh_token='<refresh_token_for_this_request>').get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
 

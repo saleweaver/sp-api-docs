@@ -56,13 +56,13 @@ You can use every account's name from the config file for account
 
     Orders(account=another_account).get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
 
-Note
-^^^^
-The refresh token can be passed directly to the client, too. You don't need to pass the whole credentials if all that changes is the refresh token.
+.. note::
 
-..  code-block:: python
+    The refresh token can be passed directly to the client, too. You don't need to pass the whole credentials if all that changes is the refresh token.
 
-    Orders(account='another_account', refresh_token='<refresh_token_for_this_request>').get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
+    ..  code-block:: python
+
+        Orders(account='another_account', refresh_token='<refresh_token_for_this_request>').get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
 
 
 **********

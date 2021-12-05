@@ -3,8 +3,10 @@ Load All Pages Decorator
 
 ..  automethod:: sp_api.util.load_all_pages
 
-The example below will load all pages, transforming the decorated function to a generator:
+The example below will load all pages, transforming the decorated function to a generator.
+The generator yields a page at a time.
 
+Some examples:
 
 .. code-block:: python
 
@@ -26,6 +28,18 @@ The example below will load all pages, transforming the decorated function to a 
     for page in load_all_orders(LastUpdatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat()):
         for order in page.payload.get('Orders'):
             print(order)
+
+
+.. code-block:: python
+
+    @throttle_retry()
+    @load_all_pages()
+    def get_financial_events(**kwargs):
+        return Finances().list_financial_events(**kwargs)
+
+    for page in get_financial_events(PostedAfter='2021-05-10', PostedBefore='2021-05-11', MaxResultsPerPage=100):
+        for event in page.payload.get('FinancialEvents').get('ShipmentEventList'):
+            print(event)
 
 
 .. warning::

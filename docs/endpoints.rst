@@ -14,6 +14,7 @@ Endpoints
     endpoints/fba_inbound_eligibility
     endpoints/fba_small_and_light
     endpoints/feeds
+    endpoints/feeds2
     endpoints/finances
     endpoints/fulfillment_inbound
     endpoints/fulfillment_outbound

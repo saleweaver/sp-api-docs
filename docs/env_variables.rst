@@ -13,6 +13,25 @@ SP_API_SECRET_KEY        AWS USER SECRET KEY
 SP_API_ROLE_ARN          The role's arn (needs permission to "Assume Role" STS)
 =====================    =========================================================================================================
 
+.. note::
+    Required fields are:
+
+    - lwa_app_id
+    - lwa_client_secret
+    - aws_secret_key
+    - aws_access_key
+
+    If you don't set the refresh_token, you have to pass it to the client.
+
+    .. code-block:: python
+
+        Orders(refresh_token='...')
+
+.. warning::
+    If you have assigned the execute-api (STS) permissions to your AWS **user**, omit `role_arn`.
+
+    If you have assigned the permissions to a role, the `role_arn` parameter is required.
+
 
 To set environment variables under linux/mac, use
 

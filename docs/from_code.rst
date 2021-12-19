@@ -6,6 +6,7 @@ You can override/set credentials from code by passing a ``dict`` to the client.
 
 If you pass a value in credentials, other credentials from env variables or from a config file will be ignored.
 
+
 .. note::
     Required fields are:
 

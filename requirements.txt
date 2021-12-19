@@ -1,10 +1,9 @@
-# git+https://github.com/saleweaver/python-amazon-sp-api@master
-python-amazon-sp-api==0.10.0
+git+https://github.com/saleweaver/python-amazon-sp-api@master
 sphinx
 sphinx-rtd-theme
 sphinx-runner
 
-
+sphinx_rtd_theme
 sphinx-documatt-theme
 
 Jinja2~=3.0.3

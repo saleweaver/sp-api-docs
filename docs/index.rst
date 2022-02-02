@@ -11,6 +11,7 @@ Welcome to PYTHON-AMAZON-SP-API's documentation!
 
    installation
    credentials
+   examples
    quickstart
    endpoints
    pii

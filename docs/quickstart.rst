@@ -1,6 +1,11 @@
 Quickstart
 ==========
 
+.. button::
+   :text: Visit Playground
+   :link: https://sp-api-playground.saleweaver.com/?utm_source=documentation&utm_medium=docs&utm_term=quickstart
+
+
 After setting up your credentials, you're ready to make the first call.
 This quickstart uses credentials passed as a dict, if you've setup a config file or environment variables, this can be omitted.
 

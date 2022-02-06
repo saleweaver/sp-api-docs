@@ -1,7 +1,7 @@
 Testing / Sandbox
 =================
 
-For testing, you can use the sandbox endpoints by setting `AWS_ENV` to production as an environment variable.
+For testing, you can use the sandbox endpoints by setting `AWS_ENV="SANDBOX"`
 
 ..  code-block:: bash
 

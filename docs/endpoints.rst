@@ -19,6 +19,7 @@ Endpoints
     endpoints/fulfillment_outbound
     endpoints/inventories
     endpoints/listings_items
+    endpoints/listings_restrictions
     endpoints/merchant_fulfillment
     endpoints/messaging
     endpoints/notifications
@@ -27,7 +28,6 @@ Endpoints
     endpoints/product_type_definitions
     endpoints/products
     endpoints/reports
-    endpoints/reports2
     endpoints/sales
     endpoints/sellers
     endpoints/services

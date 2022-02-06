@@ -3,8 +3,9 @@ sphinx
 sphinx-rtd-theme
 sphinx-runner
 
-
+sphinx_rtd_theme
 sphinx-documatt-theme
 
 Jinja2~=3.0.3
 docutils~=0.17.1
+

@@ -17,6 +17,25 @@ Search paths are:
 
 If you're only using one account, place it under default. You can pass the account's name to the client to use any other account used in the `credentials.yml`_ file.
 
+.. note::
+    Required fields are:
+
+    - lwa_app_id
+    - lwa_client_secret
+    - aws_secret_key
+    - aws_access_key
+
+    If you don't set the refresh_token, you have to pass it to the client.
+
+    .. code-block:: python
+
+        Orders(refresh_token='...')
+
+.. warning::
+    If you have assigned the execute-api (STS) permissions to your AWS **user**, omit `role_arn`.
+
+    If you have assigned the permission to a role, the `role_arn` parameter is required.
+
 ..  code-block:: yaml
 
     version: '1.0'
@@ -56,13 +75,13 @@ You can use every account's name from the config file for account
 
     Orders(account=another_account).get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
 
-Note
-^^^^
-The refresh token can be passed directly to the client, too. You don't need to pass the whole credentials if all that changes is the refresh token.
+.. note::
 
-..  code-block:: python
+    The refresh token can be passed directly to the client, too. You don't need to pass the whole credentials if all that changes is the refresh token.
 
-    Orders(account='another_account', refresh_token='<refresh_token_for_this_request>').get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
+    ..  code-block:: python
+
+        Orders(account='another_account', refresh_token='<refresh_token_for_this_request>').get_orders(CreatedAfter=(datetime.utcnow() - timedelta(days=7)).isoformat())
 
 
 **********

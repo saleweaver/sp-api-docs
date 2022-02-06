@@ -18,6 +18,7 @@ You can use the playground to test endpoints:
 
    installation
    credentials
+   examples
    quickstart
    endpoints
    pii
